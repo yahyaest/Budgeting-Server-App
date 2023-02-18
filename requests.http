@@ -1,0 +1,29 @@
+### Create a new user
+POST  http://localhost:3000/users
+Content-Type: application/json
+
+{
+ "email": "qwerty@domain.com",
+ "password" : "123456789",
+ "phone" : 1234
+}
+
+### Find User with ID
+GET http://localhost:3000/users/1
+
+### Find all user
+GET http://localhost:3000/users
+
+### Find all user with query params
+GET http://localhost:3000/users?email=qwerty@domain.com&phone=1234
+
+### Update User with ID
+PATCH   http://localhost:3000/users/3
+Content-Type: application/json
+
+{
+ "phone": 1234
+}
+
+### Delete User with ID
+DELETE  http://localhost:3000/users/2

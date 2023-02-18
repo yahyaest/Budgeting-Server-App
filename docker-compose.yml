@@ -1,0 +1,52 @@
+version: '3.5'
+services:
+  budgeting-app:
+    container_name: budgeting-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+  
+  prisma-studio:
+    container_name: prisma-studio
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 5555:5555
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+    command: npx prisma studio
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    restart: unless-stopped
+    user: postgres
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=budgetingdb
+    volumes:
+      - postgres-budgeting:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    ports:
+      - 9090:8080
+    restart: unless-stopped
+volumes:
+  postgres-budgeting:
