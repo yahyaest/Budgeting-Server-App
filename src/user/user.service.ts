@@ -3,6 +3,8 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from '@prisma/client';
+import { CustomRequest } from './models/request.models';
+
 
 @Injectable()
 export class UserService {
@@ -26,6 +28,10 @@ export class UserService {
     return await this.prisma.user.findUnique({ where: { id: +id } });
   }
 
+  getCurrentUser(req: CustomRequest): User {
+    return req.user;
+  }
+
   async getUsersWithParams(query: Object) {
     const userModel = await this.getUserModel();
     for (const key of Object.keys(query)) {
@@ -46,7 +52,7 @@ export class UserService {
   async updateUser(id: string, body: UpdateUserDto) {
     return await this.prisma.user.update({
       where: { id: +id },
-      data: body ,
+      data: body,
     });
   }
 

@@ -9,32 +9,41 @@ import {
   Patch,
   Post,
   Query,
+  Req,
+  UseGuards,
 } from '@nestjs/common';
+import { Roles } from 'src/auth/decorator';
+import { JwtGuard, RolesGuard } from 'src/auth/guard';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { CustomRequest } from './models/request.models';
 import { UserService } from './user.service';
 
-@Controller('users')
+@UseGuards(JwtGuard, RolesGuard)
+@Controller('api/users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('')
+  @Roles('ADMIN')
   async getUsersWithParams(@Query() query: Object) {
     //  return await this.userService.getUsersWithParams(query);
 
     try {
-      const users = await this.userService.getUsersWithParams(query);
-      if (!users || users.length === 0) {
-        throw new Error('No users found');
-      }
-      return users;
+      return await this.userService.getUsersWithParams(query);
     } catch (error) {
       console.log(`Failed to retrieve users: ${error.message}`);
       throw new HttpException('No users found', HttpStatus.NOT_FOUND);
     }
   }
 
+  @Get('/me')
+  getCurrentUser(@Req() req: CustomRequest) {
+    return this.userService.getCurrentUser(req);
+  }
+
   @Get('/:id')
+  @Roles('ADMIN')
   async getUser(@Param('id') id: string) {
     // return await this.userService.getUser(id);
     try {
@@ -77,6 +86,7 @@ export class UserController {
   }
 
   @Delete('/:id')
+  @Roles('ADMIN')
   async deleteUser(@Param('id') id: string) {
     // return await this.userService.removeUser(id);
     try {
