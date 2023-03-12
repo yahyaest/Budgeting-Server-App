@@ -1,8 +1,7 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch, Post, Query } from '@nestjs/common';
 import { Roles } from 'src/auth/decorator';
 import { BudgetService } from './budget.service';
-import { CreateBudgetDto } from './dto/create-budget.dto';
-import { UpdateBudgetDto } from './dto/update-budget.dto';
+import { CreateBudgetDto, UpdateBudgetDto } from './dto';
 
 @Controller('budget')
 export class BudgetController {

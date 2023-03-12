@@ -12,8 +12,7 @@ import {
 } from '@nestjs/common';
 import { Roles } from 'src/auth/decorator';
 import { CategoryService } from './category.service';
-import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
+import { CreateCategoryDto, UpdateCategoryDto } from './dto';
 
 @Controller('api/category')
 export class CategoryController {

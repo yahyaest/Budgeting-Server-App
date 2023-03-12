@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { CategoryModule } from './category/category.module';
 import { BudgetModule } from './budget/budget.module';
 import { CategoryBudgetModule } from './category-budget/category-budget.module';
+import { ImageModule } from './image/image.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { CategoryBudgetModule } from './category-budget/category-budget.module';
     CategoryModule,
     BudgetModule,
     CategoryBudgetModule,
+    ImageModule,
   ],
 })
 export class AppModule {}

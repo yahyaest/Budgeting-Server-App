@@ -1,8 +1,7 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch, Post, Query } from '@nestjs/common';
 import { Roles } from 'src/auth/decorator';
 import { CategoryBudgetService } from './category-budget.service';
-import { CreateCategoryBudgetDto } from './dto/create-category-budget.dto';
-import { UpdateCategoryBudgetDto } from './dto/update-category-budget.dto';
+import { CreateCategoryBudgetDto, UpdateCategoryBudgetDto } from './dto';
 
 @Controller('category-budget')
 export class CategoryBudgetController {
