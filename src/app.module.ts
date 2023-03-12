@@ -7,6 +7,7 @@ import { CategoryModule } from './category/category.module';
 import { BudgetModule } from './budget/budget.module';
 import { CategoryBudgetModule } from './category-budget/category-budget.module';
 import { ImageModule } from './image/image.module';
+import { ReminderModule } from './reminder/reminder.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ImageModule } from './image/image.module';
     BudgetModule,
     CategoryBudgetModule,
     ImageModule,
+    ReminderModule,
   ],
 })
 export class AppModule {}
