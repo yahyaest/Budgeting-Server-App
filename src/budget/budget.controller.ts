@@ -1,8 +1,10 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { Roles } from 'src/auth/decorator';
+import { JwtGuard } from 'src/auth/guard';
 import { BudgetService } from './budget.service';
 import { CreateBudgetDto, UpdateBudgetDto } from './dto';
 
+@UseGuards(JwtGuard)
 @Controller('budget')
 export class BudgetController {
   constructor(private readonly budgetService: BudgetService) {}
@@ -30,7 +32,6 @@ export class BudgetController {
   }
 
   @Post('')
-  @Roles('ADMIN')
   async addBudget(@Body() createBudgetDto: CreateBudgetDto) {
     try {
       return await this.budgetService.addBudget(createBudgetDto);
@@ -43,7 +44,6 @@ export class BudgetController {
   }
 
   @Patch('/:id')
-  @Roles('ADMIN')
   async updateBudget(
     @Param('id') id: string,
     @Body() updateBudgetDto: UpdateBudgetDto,
@@ -59,7 +59,6 @@ export class BudgetController {
   }
 
   @Delete('/:id')
-  @Roles('ADMIN')
   async deleteBudget(@Param('id') id: string) {
     try {
       const budget = await this.budgetService.removeBudget(id);

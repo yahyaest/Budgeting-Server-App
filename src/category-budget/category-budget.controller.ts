@@ -1,8 +1,22 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpException,
+  HttpStatus,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { Roles } from 'src/auth/decorator';
+import { JwtGuard } from 'src/auth/guard';
 import { CategoryBudgetService } from './category-budget.service';
 import { CreateCategoryBudgetDto, UpdateCategoryBudgetDto } from './dto';
 
+@UseGuards(JwtGuard)
 @Controller('category-budget')
 export class CategoryBudgetController {
   constructor(private readonly categoryBudgetService: CategoryBudgetService) {}
@@ -10,7 +24,9 @@ export class CategoryBudgetController {
   @Get('')
   async getCategoryBudgets(@Query() query: Object) {
     try {
-      return await this.categoryBudgetService.getCategoryBudgetsWithParams(query);
+      return await this.categoryBudgetService.getCategoryBudgetsWithParams(
+        query,
+      );
     } catch (error) {
       throw new HttpException('No CategoryBudgets found', HttpStatus.NOT_FOUND);
     }
@@ -19,7 +35,8 @@ export class CategoryBudgetController {
   @Get('/:id')
   async getCategoryBudget(@Param('id') id: string) {
     try {
-      const categoryBudget = await this.categoryBudgetService.getCategoryBudgetById(id);
+      const categoryBudget =
+        await this.categoryBudgetService.getCategoryBudgetById(id);
       if (!categoryBudget) {
         throw new Error('CategoryBudget not found');
       }
@@ -30,10 +47,13 @@ export class CategoryBudgetController {
   }
 
   @Post('')
-  @Roles('ADMIN')
-  async addCategoryBudget(@Body() createCategoryBudgetDto: CreateCategoryBudgetDto) {
+  async addCategoryBudget(
+    @Body() createCategoryBudgetDto: CreateCategoryBudgetDto,
+  ) {
     try {
-      return await this.categoryBudgetService.addCategoryBudget(createCategoryBudgetDto);
+      return await this.categoryBudgetService.addCategoryBudget(
+        createCategoryBudgetDto,
+      );
     } catch (error) {
       throw new HttpException(
         'Unexpected error occured',
@@ -43,13 +63,15 @@ export class CategoryBudgetController {
   }
 
   @Patch('/:id')
-  @Roles('ADMIN')
   async updateCategoryBudget(
     @Param('id') id: string,
     @Body() updateCategoryBudgetDto: UpdateCategoryBudgetDto,
   ) {
     try {
-      return await this.categoryBudgetService.updateCategoryBudget(id, updateCategoryBudgetDto);
+      return await this.categoryBudgetService.updateCategoryBudget(
+        id,
+        updateCategoryBudgetDto,
+      );
     } catch (error) {
       throw new HttpException(
         'Unexpected error occured',
@@ -59,10 +81,10 @@ export class CategoryBudgetController {
   }
 
   @Delete('/:id')
-  @Roles('ADMIN')
   async deleteCategoryBudget(@Param('id') id: string) {
     try {
-      const categoryBudget = await this.categoryBudgetService.removeCategoryBudget(id);
+      const categoryBudget =
+        await this.categoryBudgetService.removeCategoryBudget(id);
       if (!categoryBudget) {
         throw new Error('CategoryBudget not found');
       }

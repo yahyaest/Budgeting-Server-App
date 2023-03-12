@@ -1,8 +1,10 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { Roles } from 'src/auth/decorator';
+import { JwtGuard } from 'src/auth/guard';
 import { CreateImageDto, UpdateImageDto } from './dto';
 import { ImageService } from './image.service';
 
+@UseGuards(JwtGuard)
 @Controller('image')
 export class ImageController {
   constructor(private readonly imageService: ImageService) {}

@@ -1,7 +1,9 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import { JwtGuard } from 'src/auth/guard';
 import { CreateReminderDto, UpdateReminderDto } from 'src/reminder/dto';
 import { ReminderService } from './reminder.service';
 
+@UseGuards(JwtGuard)
 @Controller('reminder')
 export class ReminderController {
   constructor(private readonly reminderService: ReminderService) {}

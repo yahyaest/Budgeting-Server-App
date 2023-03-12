@@ -9,11 +9,14 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { Roles } from 'src/auth/decorator';
+import { JwtGuard, RolesGuard } from 'src/auth/guard';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto, UpdateCategoryDto } from './dto';
 
+@UseGuards(JwtGuard, RolesGuard)
 @Controller('api/category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
