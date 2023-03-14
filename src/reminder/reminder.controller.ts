@@ -4,7 +4,7 @@ import { CreateReminderDto, UpdateReminderDto } from 'src/reminder/dto';
 import { ReminderService } from './reminder.service';
 
 @UseGuards(JwtGuard)
-@Controller('reminder')
+@Controller('api/reminders')
 export class ReminderController {
   constructor(private readonly reminderService: ReminderService) {}
 

@@ -112,10 +112,9 @@ model Goal {
   progress      Float
   targetDate    DateTime
   achieved      Boolean           @default(false)
-  decription    String?
+  description    String?
   user          User?             @relation(fields: [userId], references: [id])
   userId        Int?
-  description   String
   transactions  GoalTransaction[]
 }
 

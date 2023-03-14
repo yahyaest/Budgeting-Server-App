@@ -5,7 +5,7 @@ import { CreateImageDto, UpdateImageDto } from './dto';
 import { ImageService } from './image.service';
 
 @UseGuards(JwtGuard)
-@Controller('image')
+@Controller('api/images')
 export class ImageController {
   constructor(private readonly imageService: ImageService) {}
 

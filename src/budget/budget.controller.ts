@@ -5,7 +5,7 @@ import { BudgetService } from './budget.service';
 import { CreateBudgetDto, UpdateBudgetDto } from './dto';
 
 @UseGuards(JwtGuard)
-@Controller('budget')
+@Controller('api/budgets')
 export class BudgetController {
   constructor(private readonly budgetService: BudgetService) {}
 

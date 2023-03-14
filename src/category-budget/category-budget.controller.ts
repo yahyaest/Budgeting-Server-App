@@ -21,7 +21,7 @@ import { CreateCategoryBudgetDto, UpdateCategoryBudgetDto } from './dto';
 export class CategoryBudgetController {
   constructor(private readonly categoryBudgetService: CategoryBudgetService) {}
 
-  @Get('')
+  @Get('api/categories-budgets')
   async getCategoryBudgets(@Query() query: Object) {
     try {
       return await this.categoryBudgetService.getCategoryBudgetsWithParams(

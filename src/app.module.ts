@@ -9,6 +9,8 @@ import { CategoryBudgetModule } from './category-budget/category-budget.module';
 import { ImageModule } from './image/image.module';
 import { ReminderModule } from './reminder/reminder.module';
 import { TransactionModule } from './transaction/transaction.module';
+import { GoalModule } from './goal/goal.module';
+import { GoalTransactionModule } from './goal-transaction/goal-transaction.module';
 
 @Module({
   imports: [
@@ -24,6 +26,8 @@ import { TransactionModule } from './transaction/transaction.module';
     ImageModule,
     ReminderModule,
     TransactionModule,
+    GoalModule,
+    GoalTransactionModule,
   ],
 })
 export class AppModule {}

@@ -16,7 +16,7 @@ import { CreateTransactionDto, UpdateTransactionDto } from './dto';
 import { TransactionService } from './transaction.service';
 
 @UseGuards(JwtGuard)
-@Controller('transaction')
+@Controller('api/transactions')
 export class TransactionController {
   constructor(private readonly transactionService: TransactionService) {}
 
