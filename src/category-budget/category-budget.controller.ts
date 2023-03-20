@@ -17,11 +17,11 @@ import { CategoryBudgetService } from './category-budget.service';
 import { CreateCategoryBudgetDto, UpdateCategoryBudgetDto } from './dto';
 
 @UseGuards(JwtGuard)
-@Controller('category-budget')
+@Controller('api/categories-budgets')
 export class CategoryBudgetController {
   constructor(private readonly categoryBudgetService: CategoryBudgetService) {}
 
-  @Get('api/categories-budgets')
+  @Get('')
   async getCategoryBudgets(@Query() query: Object) {
     try {
       return await this.categoryBudgetService.getCategoryBudgetsWithParams(
@@ -55,10 +55,8 @@ export class CategoryBudgetController {
         createCategoryBudgetDto,
       );
     } catch (error) {
-      throw new HttpException(
-        'Unexpected error occured',
-        HttpStatus.BAD_REQUEST,
-      );
+      console.log(error);
+      throw new HttpException(error, HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -73,8 +71,9 @@ export class CategoryBudgetController {
         updateCategoryBudgetDto,
       );
     } catch (error) {
+      console.log(error)
       throw new HttpException(
-        'Unexpected error occured',
+        error,
         HttpStatus.BAD_REQUEST,
       );
     }

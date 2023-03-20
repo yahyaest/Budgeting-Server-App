@@ -36,8 +36,9 @@ export class ImageController {
     try {
       return await this.imageService.addImage(createImageDto);
     } catch (error) {
+      console.log(error)
       throw new HttpException(
-        'Unexpected error occured',
+        error,
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -51,8 +52,9 @@ export class ImageController {
     try {
       return await this.imageService.updateImage(id, updateImageDto);
     } catch (error) {
+      console.log(error)
       throw new HttpException(
-        'Unexpected error occured',
+        error,
         HttpStatus.BAD_REQUEST,
       );
     }

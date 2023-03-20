@@ -6,8 +6,12 @@ export class CreateUserDto {
 
   @IsString()
   password: string;
-  
+
+  @IsString()
+  @IsOptional()
+  username: string;
+
   @IsInt()
   @IsOptional()
-  phone:number
+  phone: number;
 }

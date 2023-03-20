@@ -8,7 +8,11 @@ export class UpdateUserDto {
   @IsOptional()
   @IsString()
   password: string;
-  
+
+  @IsString()
+  @IsOptional()
+  username: string;
+
   @IsOptional()
   @IsInt()
   phone: number;

@@ -62,8 +62,10 @@ export class UserController {
     try {
       return await this.userService.addUser(createUserDto);
     } catch (error) {
+      console.log(error)
+      console.log(error)
       throw new HttpException(
-        'Unexpected error occured',
+        error,
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -77,8 +79,9 @@ export class UserController {
     try {
       return await this.userService.updateUser(id, updateUserDto);
     } catch (error) {
+      console.log(error)
       throw new HttpException(
-        'Unexpected error occured',
+        error,
         HttpStatus.BAD_REQUEST,
       );
     }

@@ -1,13 +1,14 @@
-import { IsDate, IsInt, IsString } from 'class-validator';
+import { IsInt, IsOptional, IsString } from 'class-validator';
 
 export class CreateReminderDto {
-  @IsDate()
-  date: Date;
+  @IsString()
+  date: string;
 
   @IsString()
   message: string;
 
   @IsString()
+  @IsOptional()
   type: 'DailyTransaction' | 'MonthlyBudget';
 
   @IsInt()

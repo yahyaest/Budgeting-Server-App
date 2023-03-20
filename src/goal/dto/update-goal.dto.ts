@@ -1,4 +1,4 @@
-import { IsBoolean, IsDate, IsInt, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsInt, IsOptional, IsString } from 'class-validator';
 
 export class UpdateGoalDto {
   @IsString()
@@ -13,9 +13,9 @@ export class UpdateGoalDto {
   @IsOptional()
   description: string;
 
-  @IsDate()
+  @IsString()
   @IsOptional()
-  targetDate: Date;
+  targetDate: string;
 
   @IsInt()
   @IsOptional()

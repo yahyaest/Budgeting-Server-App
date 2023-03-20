@@ -1,0 +1,92 @@
+[
+  {
+    "month": "January",
+    "year": "2023",
+    "targetBudget": 475,
+    "currentBudget": 98,
+    "userId": 1,
+    "budgetId": 1,
+    "categoryId": 1
+  },
+  {
+    "month": "May",
+    "year": "2023",
+    "targetBudget": 351,
+    "currentBudget": 244,
+    "userId": 2,
+    "budgetId": 2,
+    "categoryId": 2
+  },
+  {
+    "month": "March",
+    "year": "2023",
+    "targetBudget": 499,
+    "currentBudget": 281,
+    "userId": 3,
+    "budgetId": 3,
+    "categoryId": 3
+  },
+  {
+    "month": "June",
+    "year": "2023",
+    "targetBudget": 466,
+    "currentBudget": 170,
+    "userId": 4,
+    "budgetId": 4,
+    "categoryId": 4
+  },
+  {
+    "month": "July",
+    "year": "2023",
+    "targetBudget": 419,
+    "currentBudget": 186,
+    "userId": 5,
+    "budgetId": 5,
+    "categoryId": 5
+  },
+  {
+    "month": "December",
+    "year": "2023",
+    "targetBudget": 493,
+    "currentBudget": 5,
+    "userId": 6,
+    "budgetId": 6,
+    "categoryId": 6
+  },
+  {
+    "month": "November",
+    "year": "2023",
+    "targetBudget": 415,
+    "currentBudget": 63,
+    "userId": 7,
+    "budgetId": 7,
+    "categoryId": 7
+  },
+  {
+    "month": "October",
+    "year": "2023",
+    "targetBudget": 499,
+    "currentBudget": 142,
+    "userId": 8,
+    "budgetId": 8,
+    "categoryId": 8
+  },
+  {
+    "month": "April",
+    "year": "2023",
+    "targetBudget": 433,
+    "currentBudget": 90,
+    "userId": 9,
+    "budgetId": 9,
+    "categoryId": 9
+  },
+  {
+    "month": "September",
+    "year": "2023",
+    "targetBudget": 491,
+    "currentBudget": 281,
+    "userId": 10,
+    "budgetId": 10,
+    "categoryId": 10
+  }
+]

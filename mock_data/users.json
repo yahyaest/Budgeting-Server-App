@@ -1,0 +1,72 @@
+[
+  {
+    "id": 6,
+    "createdAt": "2023-02-19T18:26:38.151Z",
+    "updatedAt": "2023-02-19T18:28:24.694Z",
+    "email": "test@domain.com",
+    "username": null,
+    "phone": 1234,
+    "password": "$argon2id$v=19$m=65536,t=3,p=4$abIGevz01BvJCyLbSRSItA$Zj7xK7iU49WS74JhWbXtARgqLgmLEBVsj/rgu/MQ8dU",
+    "role": "USER"
+  },
+  {
+    "id": 1,
+    "createdAt": "2023-02-07T13:57:23.429Z",
+    "updatedAt": "2023-02-08T21:14:20.835Z",
+    "email": "me@domain.com",
+    "username": "azerty",
+    "phone": 1234,
+    "password": "$argon2id$v=19$m=65536,t=3,p=4$abIGevz01BvJCyLbSRSItA$Zj7xK7iU49WS74JhWbXtARgqLgmLEBVsj/rgu/MQ8dU",
+    "role": "ADMIN"
+  },
+  {
+    "id": 3,
+    "createdAt": "2023-02-08T18:05:58.303Z",
+    "updatedAt": "2023-02-11T09:13:47.602Z",
+    "email": "qwerty@domain.com",
+    "username": "qwerty",
+    "phone": 12345,
+    "password": "$argon2id$v=19$m=65536,t=3,p=4$abIGevz01BvJCyLbSRSItA$Zj7xK7iU49WS74JhWbXtARgqLgmLEBVsj/rgu/MQ8dU",
+    "role": "USER"
+  },
+  {
+    "id": 19,
+    "createdAt": "2023-03-01T19:25:24.224Z",
+    "updatedAt": "2023-03-01T19:25:24.224Z",
+    "email": "test1@domain.com",
+    "username": null,
+    "phone": null,
+    "password": "$argon2id$v=19$m=65536,t=3,p=4$g4Yb+A7MsY/WmrmwH1VSFA$kKTqio8M2ViKjOUiyDKPHzjHi4C9koVhbNWU/90e4Mo",
+    "role": "USER"
+  },
+  {
+    "id": 21,
+    "createdAt": "2023-03-14T21:28:08.490Z",
+    "updatedAt": "2023-03-14T21:28:08.490Z",
+    "email": "lwatkin0@tinypic.com",
+    "username": null,
+    "phone": 31374839,
+    "password": "123456789",
+    "role": "USER"
+  },
+  {
+    "id": 22,
+    "createdAt": "2023-03-14T21:29:42.831Z",
+    "updatedAt": "2023-03-14T21:29:42.831Z",
+    "email": "wkingsman1@php.net",
+    "username": "Willey",
+    "phone": 36884567,
+    "password": "123456789",
+    "role": "USER"
+  },
+  {
+    "id": 23,
+    "createdAt": "2023-03-14T21:30:11.703Z",
+    "updatedAt": "2023-03-14T21:30:11.703Z",
+    "email": "aricciardi2@amazon.co.uk",
+    "username": "Althea",
+    "phone": 56152255,
+    "password": "123456789",
+    "role": "USER"
+  }
+]

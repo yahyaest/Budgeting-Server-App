@@ -5,8 +5,8 @@ export class CreateTransactionDto {
   @IsOptional()
   description: string;
 
-  @IsDate()
-  date: Date;
+  @IsString()
+  date: string;
 
   @IsInt()
   amount: number;

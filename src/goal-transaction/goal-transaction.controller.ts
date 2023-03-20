@@ -35,8 +35,9 @@ export class GoalTransactionController {
     try {
       return await this.goalTransactionsService.addGoalTransactions(createGoalTransactionsDto);
     } catch (error) {
+      console.log(error)
       throw new HttpException(
-        'Unexpected error occured',
+        error,
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -50,8 +51,9 @@ export class GoalTransactionController {
     try {
       return await this.goalTransactionsService.updateGoalTransactions(id, updateGoalTransactionsDto);
     } catch (error) {
+      console.log(error)
       throw new HttpException(
-        'Unexpected error occured',
+        error,
         HttpStatus.BAD_REQUEST,
       );
     }

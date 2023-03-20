@@ -35,8 +35,9 @@ export class ReminderController {
     try {
       return await this.reminderService.addReminder(createReminderDto);
     } catch (error) {
+      console.log(error)
       throw new HttpException(
-        'Unexpected error occured',
+        error,
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -50,8 +51,9 @@ export class ReminderController {
     try {
       return await this.reminderService.updateReminder(id, updateReminderDto);
     } catch (error) {
+      console.log(error)
       throw new HttpException(
-        'Unexpected error occured',
+        error,
         HttpStatus.BAD_REQUEST,
       );
     }

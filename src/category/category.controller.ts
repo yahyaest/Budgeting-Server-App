@@ -49,8 +49,9 @@ export class CategoryController {
     try {
       return await this.categoryService.addCategory(createCategoryDto);
     } catch (error) {
+      console.log(error)
       throw new HttpException(
-        'Unexpected error occured',
+        error,
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -65,8 +66,9 @@ export class CategoryController {
     try {
       return await this.categoryService.updateCategory(id, updateCategoryDto);
     } catch (error) {
+      console.log(error)
       throw new HttpException(
-        'Unexpected error occured',
+        error,
         HttpStatus.BAD_REQUEST,
       );
     }

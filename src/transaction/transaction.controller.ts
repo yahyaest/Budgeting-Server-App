@@ -47,8 +47,9 @@ export class TransactionController {
     try {
       return await this.transactionService.addTransaction(createTransactionDto);
     } catch (error) {
+      console.log(error)
       throw new HttpException(
-        'Unexpected error occured',
+        error,
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -65,8 +66,9 @@ export class TransactionController {
         updateTransactionDto,
       );
     } catch (error) {
+      console.log(error)
       throw new HttpException(
-        'Unexpected error occured',
+        error,
         HttpStatus.BAD_REQUEST,
       );
     }

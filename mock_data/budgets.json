@@ -1,0 +1,72 @@
+[
+  {
+    "month": "January",
+    "year": "2023",
+    "targetBudget": 302,
+    "currentBudget": 48,
+    "userId": 1
+  },
+  {
+    "month": "June",
+    "year": "2023",
+    "targetBudget": 310,
+    "currentBudget": 281,
+    "userId": 2
+  },
+  {
+    "month": "December",
+    "year": "2023",
+    "targetBudget": 304,
+    "currentBudget": 278,
+    "userId": 3
+  },
+  {
+    "month": "May",
+    "year": "2023",
+    "targetBudget": 413,
+    "currentBudget": 119,
+    "userId": 4
+  },
+  {
+    "month": "January",
+    "year": "2023",
+    "targetBudget": 447,
+    "currentBudget": 3,
+    "userId": 5
+  },
+  {
+    "month": "July",
+    "year": "2023",
+    "targetBudget": 358,
+    "currentBudget": 162,
+    "userId": 6
+  },
+  {
+    "month": "June",
+    "year": "2023",
+    "targetBudget": 448,
+    "currentBudget": 297,
+    "userId": 7
+  },
+  {
+    "month": "March",
+    "year": "2023",
+    "targetBudget": 320,
+    "currentBudget": 127,
+    "userId": 8
+  },
+  {
+    "month": "October",
+    "year": "2023",
+    "targetBudget": 332,
+    "currentBudget": 100,
+    "userId": 9
+  },
+  {
+    "month": "November",
+    "year": "2023",
+    "targetBudget": 351,
+    "currentBudget": 14,
+    "userId": 10
+  }
+]

@@ -1,9 +1,9 @@
 import { IsDate, IsInt, IsOptional, IsString } from 'class-validator';
 
 export class UpdateReminderDto {
+  @IsString()
   @IsOptional()
-  @IsDate()
-  date: Date;
+  date: string;
 
   @IsString()
   @IsOptional()

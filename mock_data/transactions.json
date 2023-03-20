@@ -1,0 +1,82 @@
+[
+  {
+    "date": "2022-11-20T10:11:59Z",
+    "description": "Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
+    "amount": 130,
+    "userId": 1,
+    "categoryId": 1,
+    "imageId": 1
+  },
+  {
+    "date": "2023-01-06T06:39:20Z",
+    "description": "Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
+    "amount": 476,
+    "userId": 2,
+    "categoryId": 2,
+    "imageId": 2
+  },
+  {
+    "date": "2023-03-10T16:17:23Z",
+    "description": "Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
+    "amount": 211,
+    "userId": 3,
+    "categoryId": 3,
+    "imageId": 3
+  },
+  {
+    "date": "2022-08-25T12:33:29Z",
+    "description": "Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+    "amount": 327,
+    "userId": 4,
+    "categoryId": 4,
+    "imageId": 4
+  },
+  {
+    "date": "2023-03-04T22:37:39Z",
+    "description": "Integer a nibh. In quis justo.",
+    "amount": 275,
+    "userId": 5,
+    "categoryId": 5,
+    "imageId": 5
+  },
+  {
+    "date": "2022-11-30T07:20:49Z",
+    "description": "Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.",
+    "amount": 285,
+    "userId": 6,
+    "categoryId": 6,
+    "imageId": 6
+  },
+  {
+    "date": "2023-02-04T08:48:02Z",
+    "description": "Praesent blandit lacinia erat.",
+    "amount": 321,
+    "userId": 7,
+    "categoryId": 7,
+    "imageId": 7
+  },
+  {
+    "date": "2022-11-09T18:08:37Z",
+    "description": "Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+    "amount": 56,
+    "userId": 8,
+    "categoryId": 8,
+    "imageId": 8
+  },
+  {
+    "date": "2022-07-18T21:08:15Z",
+    "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus.",
+    "amount": 461,
+    "userId": 9,
+    "categoryId": 9,
+    "imageId": 9
+  },
+  {
+    "date": "2023-01-08T04:02:57Z",
+    "description": "Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.",
+    "amount": 441,
+    "userId": 10,
+    "categoryId": 10,
+    "imageId": 10
+  }
+]

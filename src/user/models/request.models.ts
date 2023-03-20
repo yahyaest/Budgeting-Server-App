@@ -1,5 +1,6 @@
-import { User } from "@prisma/client";
+import { User } from '@prisma/client';
 
 export interface CustomRequest extends Request {
   user: User;
+  userObj: User;
 }

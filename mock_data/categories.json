@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "createdAt": "2022-06-06 15:08:28",
+    "updatedAt": "2022-09-12 20:09:20",
+    "name": "Food",
+    "description": "Groceries, restaurants, and other food-related expenses."
+  },
+  {
+    "id": 2,
+    "createdAt": "2022-05-02 11:51:48",
+    "updatedAt": "2023-02-28 19:51:26",
+    "name": "Housing",
+    "description": "Rent, mortgage payments, utilities, and other housing-related expenses."
+  },
+  {
+    "id": 3,
+    "createdAt": "2022-04-20 22:00:50",
+    "updatedAt": "2022-11-18 18:15:08",
+    "name": "Transportation",
+    "description": "Car payments, gas, public transportation, and other transportation-related expenses."
+  },
+  {
+    "id": 4,
+    "createdAt": "2022-06-03 10:16:13",
+    "updatedAt": "2022-08-29 12:27:08",
+    "name": "Entertainment",
+    "description": "Movies, concerts, sporting events, and other entertainment-related expenses."
+  },
+  {
+    "id": 5,
+    "createdAt": "2022-06-04 02:27:26",
+    "updatedAt": "2022-09-30 03:08:56",
+    "name": "Personal Care",
+    "description": "Haircuts, personal grooming products, and other personal care expenses."
+  },
+  {
+    "id": 6,
+    "createdAt": "2022-06-23 03:21:53",
+    "updatedAt": "2022-08-12 16:07:38",
+    "name": "Healthcare",
+    "description": "Doctor visits, prescription medication, and other healthcare-related expenses."
+  },
+  {
+    "id": 7,
+    "createdAt": "2022-05-03 16:09:23",
+    "updatedAt": "2023-03-11 16:29:43",
+    "name": "Education",
+    "description": "Tuition, textbooks, and other education-related expenses."
+  },
+  {
+    "id": 8,
+    "createdAt": "2022-04-05 11:53:07",
+    "updatedAt": "2022-11-05 04:27:11",
+    "name": "Utilities",
+    "description": "Electricity, water, and other utility bills."
+  },
+  {
+    "id": 9,
+    "createdAt": "2022-03-26 17:34:45",
+    "updatedAt": "2023-01-27 03:39:19",
+    "name": "Shopping",
+    "description": "Clothing, electronics, and other shopping-related expenses."
+  },
+  {
+    "id": 10,
+    "createdAt": "2022-04-25 02:47:45",
+    "updatedAt": "2022-10-31 06:01:26",
+    "name": "Miscellaneous",
+    "description": "Other expenses that do not fit into any of the other categories."
+  }
+]
