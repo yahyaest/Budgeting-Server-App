@@ -27,12 +27,10 @@ export class BudgetController {
   async getBudgets(@Query() query: any, @Req() req: CustomRequest) {
     try {
       const user = req.userObj;
-      if (user.role === 'ADMIN') {
-        return await this.budgetService.getBudgetsWithParams(query);
-      } else {
+      if (user.role !== 'ADMIN') {
         query.userId = user.id;
-        return await this.budgetService.getBudgetsWithParams(query);
       }
+      return await this.budgetService.getBudgetsWithParams(query);
     } catch (error) {
       console.log(error);
       throw new HttpException('No Budgets found', HttpStatus.NOT_FOUND);
@@ -48,6 +46,7 @@ export class BudgetController {
       if (!budget) {
         throw new Error('Budget not found');
       }
+      
       if (user.id !== budget.userId && user.role !== 'ADMIN') {
         throw new Error('Budget belong to another user');
       }
@@ -103,6 +102,7 @@ export class BudgetController {
       if (!budget) {
         throw new Error('Budget not found');
       }
+
       if (user.id !== budget.userId && user.role !== 'ADMIN') {
         throw new Error('Budget belong to another user');
       }

@@ -1,74 +1,129 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
-import { JwtGuard } from 'src/auth/guard';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpException,
+  HttpStatus,
+  Param,
+  Patch,
+  Post,
+  Query,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
+import { DataAccessGuard, JwtGuard } from 'src/auth/guard';
 import { CreateGoalTransactionsDto, UpdateGoalTransactionsDto } from './dto';
 import { GoalTransactionService } from './goal-transaction.service';
+import { CustomRequest } from 'src/user/models/request.models';
 
 @UseGuards(JwtGuard)
 @Controller('api/goals-transactions')
 export class GoalTransactionController {
-  constructor(private readonly goalTransactionsService: GoalTransactionService) {}
+  constructor(
+    private readonly goalTransactionsService: GoalTransactionService,
+  ) {}
 
   @Get('')
-  async getGoals(@Query() query: Object) {
+  @UseGuards(DataAccessGuard)
+  async getGoals(@Query() query: any, @Req() req: CustomRequest) {
     try {
-      return await this.goalTransactionsService.getGoalTransactionsWithParams(query);
+      const user = req.userObj;
+      if (user.role !== 'ADMIN') {
+        query.userId = user.id;
+      }
+      return await this.goalTransactionsService.getGoalTransactionsWithParams(
+        query,
+      );
     } catch (error) {
-      throw new HttpException('No Goals found', HttpStatus.NOT_FOUND);
+      throw new HttpException(
+        'No GoalsTransactions found',
+        HttpStatus.NOT_FOUND,
+      );
     }
   }
 
   @Get('/:id')
-  async getGoal(@Param('id') id: string) {
+  @UseGuards(DataAccessGuard)
+  async getGoal(@Param('id') id: string, @Req() req: CustomRequest) {
     try {
-      const goalTransactions = await this.goalTransactionsService.getGoalTransactionsById(id);
+      const user = req.userObj;
+      const goalTransactions =
+        await this.goalTransactionsService.getGoalTransactionsById(id);
       if (!goalTransactions) {
-        throw new Error('Goal not found');
+        throw new Error('GoalTransactions not found');
+      }
+
+      if (user.id !== goalTransactions.userId && user.role !== 'ADMIN') {
+        throw new Error('GoalTransactions belong to another user');
       }
       return goalTransactions;
     } catch (error) {
-      throw new HttpException('Goal not found', HttpStatus.NOT_FOUND);
+      console.log(error);
+      throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
 
   @Post('')
   async addGoal(@Body() createGoalTransactionsDto: CreateGoalTransactionsDto) {
     try {
-      return await this.goalTransactionsService.addGoalTransactions(createGoalTransactionsDto);
-    } catch (error) {
-      console.log(error)
-      throw new HttpException(
-        error,
-        HttpStatus.BAD_REQUEST,
+      return await this.goalTransactionsService.addGoalTransactions(
+        createGoalTransactionsDto,
       );
+    } catch (error) {
+      console.log(error);
+      throw new HttpException(error, HttpStatus.BAD_REQUEST);
     }
   }
 
   @Patch('/:id')
+  @UseGuards(DataAccessGuard)
   async updateGoal(
     @Param('id') id: string,
     @Body() updateGoalTransactionsDto: UpdateGoalTransactionsDto,
+    @Req() req: CustomRequest,
   ) {
     try {
-      return await this.goalTransactionsService.updateGoalTransactions(id, updateGoalTransactionsDto);
-    } catch (error) {
-      console.log(error)
-      throw new HttpException(
-        error,
-        HttpStatus.BAD_REQUEST,
+      const user = req.userObj;
+      const goalTransactions =
+        await this.goalTransactionsService.getGoalTransactionsById(id);
+
+      if (!goalTransactions) {
+        throw new Error('GoalTransactions not found');
+      }
+
+      if (user.id !== goalTransactions.userId && user.role !== 'ADMIN') {
+        throw new Error('GoalTransactions belong to another user');
+      }
+      return await this.goalTransactionsService.updateGoalTransactions(
+        id,
+        updateGoalTransactionsDto,
       );
+    } catch (error) {
+      console.log(error);
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
   }
 
   @Delete('/:id')
-  async deleteGoal(@Param('id') id: string) {
+  @UseGuards(DataAccessGuard)
+  async deleteGoal(@Param('id') id: string, @Req() req: CustomRequest) {
     try {
-      const goalTransactions = await this.goalTransactionsService.removeGoalTransactions(id);
+      const user = req.userObj;
+      const goalTransactions =
+        await this.goalTransactionsService.getGoalTransactionsById(id);
+
       if (!goalTransactions) {
-        throw new Error('Goal not found');
+        throw new Error('GoalTransactions not found');
       }
-      return goalTransactions;
+
+      if (user.id !== goalTransactions.userId && user.role !== 'ADMIN') {
+        throw new Error('GoalTransactions belong to another user');
+      }
+      return this.goalTransactionsService.removeGoalTransactions(id);
     } catch (error) {
-      throw new HttpException('Goal not found', HttpStatus.NOT_FOUND);
+      console.log(error);
+      throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
 }

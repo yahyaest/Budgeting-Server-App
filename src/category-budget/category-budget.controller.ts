@@ -9,12 +9,13 @@ import {
   Patch,
   Post,
   Query,
+  Req,
   UseGuards,
 } from '@nestjs/common';
-import { Roles } from 'src/auth/decorator';
-import { JwtGuard } from 'src/auth/guard';
+import { DataAccessGuard, JwtGuard } from 'src/auth/guard';
 import { CategoryBudgetService } from './category-budget.service';
 import { CreateCategoryBudgetDto, UpdateCategoryBudgetDto } from './dto';
+import { CustomRequest } from 'src/user/models/request.models';
 
 @UseGuards(JwtGuard)
 @Controller('api/categories-budgets')
@@ -22,8 +23,13 @@ export class CategoryBudgetController {
   constructor(private readonly categoryBudgetService: CategoryBudgetService) {}
 
   @Get('')
-  async getCategoryBudgets(@Query() query: Object) {
+  @UseGuards(DataAccessGuard)
+  async getCategoryBudgets(@Query() query: any, @Req() req: CustomRequest) {
     try {
+      const user = req.userObj;
+      if (user.role !== 'ADMIN') {
+        query.userId = user.id;
+      }
       return await this.categoryBudgetService.getCategoryBudgetsWithParams(
         query,
       );
@@ -33,16 +39,22 @@ export class CategoryBudgetController {
   }
 
   @Get('/:id')
-  async getCategoryBudget(@Param('id') id: string) {
+  @UseGuards(DataAccessGuard)
+  async getCategoryBudget(@Param('id') id: string, @Req() req: CustomRequest) {
     try {
+      const user = req.userObj;
       const categoryBudget =
         await this.categoryBudgetService.getCategoryBudgetById(id);
       if (!categoryBudget) {
         throw new Error('CategoryBudget not found');
       }
+      if (user.id !== categoryBudget.userId && user.role !== 'ADMIN') {
+        throw new Error('CategoryBudget belong to another user');
+      }
       return categoryBudget;
     } catch (error) {
-      throw new HttpException('CategoryBudget not found', HttpStatus.NOT_FOUND);
+      console.log(error);
+      throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
 
@@ -61,35 +73,55 @@ export class CategoryBudgetController {
   }
 
   @Patch('/:id')
+  @UseGuards(DataAccessGuard)
   async updateCategoryBudget(
     @Param('id') id: string,
     @Body() updateCategoryBudgetDto: UpdateCategoryBudgetDto,
+    @Req() req: CustomRequest,
   ) {
     try {
+      const user = req.userObj;
+      const categoryBudget =
+        await this.categoryBudgetService.getCategoryBudgetById(id);
+
+      if (!categoryBudget) {
+        throw new Error('CategoryBudget not found');
+      }
+
+      if (user.id !== categoryBudget.userId && user.role !== 'ADMIN') {
+        throw new Error('CategoryBudget belong to another user');
+      }
       return await this.categoryBudgetService.updateCategoryBudget(
         id,
         updateCategoryBudgetDto,
       );
     } catch (error) {
-      console.log(error)
-      throw new HttpException(
-        error,
-        HttpStatus.BAD_REQUEST,
-      );
+      console.log(error);
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
   }
 
   @Delete('/:id')
-  async deleteCategoryBudget(@Param('id') id: string) {
+  @UseGuards(DataAccessGuard)
+  async deleteCategoryBudget(
+    @Param('id') id: string,
+    @Req() req: CustomRequest,
+  ) {
     try {
+      const user = req.userObj;
       const categoryBudget =
-        await this.categoryBudgetService.removeCategoryBudget(id);
+        await this.categoryBudgetService.getCategoryBudgetById(id);
       if (!categoryBudget) {
         throw new Error('CategoryBudget not found');
       }
-      return categoryBudget;
+
+      if (user.id !== categoryBudget.userId && user.role !== 'ADMIN') {
+        throw new Error('CategoryBudget belong to another user');
+      }
+      return await this.categoryBudgetService.removeCategoryBudget(id);
     } catch (error) {
-      throw new HttpException('CategoryBudget not found', HttpStatus.NOT_FOUND);
+      console.log(error);
+      throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
 }

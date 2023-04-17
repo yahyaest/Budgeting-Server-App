@@ -9,11 +9,13 @@ import {
   Patch,
   Post,
   Query,
+  Req,
   UseGuards,
 } from '@nestjs/common';
-import { JwtGuard } from 'src/auth/guard';
+import { DataAccessGuard, JwtGuard } from 'src/auth/guard';
 import { CreateTransactionDto, UpdateTransactionDto } from './dto';
 import { TransactionService } from './transaction.service';
+import { CustomRequest } from 'src/user/models/request.models';
 
 @UseGuards(JwtGuard)
 @Controller('api/transactions')
@@ -21,8 +23,13 @@ export class TransactionController {
   constructor(private readonly transactionService: TransactionService) {}
 
   @Get('')
-  async getTransactions(@Query() query: Object) {
+  @UseGuards(DataAccessGuard)
+  async getTransactions(@Query() query: any, @Req() req: CustomRequest) {
     try {
+      const user = req.userObj;
+      if (user.role !== 'ADMIN') {
+        query.userId = user.id;
+      }
       return await this.transactionService.getTransactionsWithParams(query);
     } catch (error) {
       throw new HttpException('No Transactions found', HttpStatus.NOT_FOUND);
@@ -30,15 +37,21 @@ export class TransactionController {
   }
 
   @Get('/:id')
-  async getTransaction(@Param('id') id: string) {
+  @UseGuards(DataAccessGuard)
+  async getTransaction(@Param('id') id: string, @Req() req: CustomRequest) {
     try {
+      const user = req.userObj;
       const transaction = await this.transactionService.getTransactionById(id);
       if (!transaction) {
         throw new Error('Transaction not found');
       }
+      if (user.id !== transaction.userId && user.role !== 'ADMIN') {
+        throw new Error('Transaction belong to another user');
+      }
       return transaction;
     } catch (error) {
-      throw new HttpException('Transaction not found', HttpStatus.NOT_FOUND);
+      console.log(error);
+      throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
 
@@ -47,43 +60,57 @@ export class TransactionController {
     try {
       return await this.transactionService.addTransaction(createTransactionDto);
     } catch (error) {
-      console.log(error)
-      throw new HttpException(
-        error,
-        HttpStatus.BAD_REQUEST,
-      );
+      console.log(error);
+      throw new HttpException(error, HttpStatus.BAD_REQUEST);
     }
   }
 
   @Patch('/:id')
+  @UseGuards(DataAccessGuard)
   async updateTransaction(
     @Param('id') id: string,
     @Body() updateTransactionDto: UpdateTransactionDto,
+    @Req() req: CustomRequest,
   ) {
     try {
+      const user = req.userObj;
+      const transaction = await this.transactionService.getTransactionById(id);
+
+      if (!transaction) {
+        throw new Error('Transaction not found');
+      }
+
+      if (user.id !== transaction.userId && user.role !== 'ADMIN') {
+        throw new Error('Transaction belong to another user');
+      }
       return await this.transactionService.updateTransaction(
         id,
         updateTransactionDto,
       );
     } catch (error) {
-      console.log(error)
-      throw new HttpException(
-        error,
-        HttpStatus.BAD_REQUEST,
-      );
+      console.log(error);
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
   }
 
   @Delete('/:id')
-  async deleteTransaction(@Param('id') id: string) {
+  @UseGuards(DataAccessGuard)
+  async deleteTransaction(@Param('id') id: string, @Req() req: CustomRequest) {
     try {
-      const transaction = await this.transactionService.removeTransaction(id);
+      const user = req.userObj;
+      const transaction = await this.transactionService.getTransactionById(id);
+
       if (!transaction) {
         throw new Error('Transaction not found');
       }
-      return transaction;
+
+      if (user.id !== transaction.userId && user.role !== 'ADMIN') {
+        throw new Error('Transaction belong to another user');
+      }
+      return await this.transactionService.removeTransaction(id);
     } catch (error) {
-      throw new HttpException('Transaction not found', HttpStatus.NOT_FOUND);
+      console.log(error);
+      throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
 }
